@@ -10,21 +10,21 @@ const AnalyseImage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<ServerResult | null>(null);
-  const [descriptiveResult, setDescriptiveResult] = useState<DiabeticRetinopathyResult | null>(null);
 
   const handleChooseImage = async () => {
     if (selectedImage) {
       setIsAnalyzing(true);
       const response = await analyseImage(selectedImage);
       if (response.status) {
+        console.log(response.data, "✅✅✅✅✅✅✅");
         setResult(prevState => ({
           ...prevState,
-          class: response.data.predicted_class.toString(),
-          confidence: response.data.confidence,
-          predictons: response.data.predictions
+          class: response?.data?.predicted_class?.toString(),
+          // confidence: response.data.confidence,
+          // reassgn the confidence which is a string and reassign the substring of first 2 numbers which is after the decimal point
+          confidence: response.data.confidence.toString().substring(2, 4)
         }))
-        const predictedClass = response.data.predicted_class.toString();
-        setDescriptiveResult(diabeticRetinopathyData[predictedClass]);
+        const predictedClass = response?.data?.predicted_class?.toString();
 
       }
       setSelectedImage(null);
@@ -42,7 +42,6 @@ const AnalyseImage: React.FC = () => {
     if (!result.canceled) {
       setSelectedImage({ uri: result.assets[0].uri });
       setResult(null);
-      setDescriptiveResult(null);
     }
   };
 
@@ -64,9 +63,9 @@ const AnalyseImage: React.FC = () => {
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.wrapper}>
         <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>Upload your Retinal Image</Text>
+          <Text style={styles.headerText}>Upload Mashroom Image</Text>
           {/* subtext */}
-          <Text style={styles.headerSubText}>Submit your retinal image for a quick and accurate assesment</Text>
+          <Text style={styles.headerSubText}>Submit Mashroom image for a quick and accurate assesment</Text>
         </View>
         {/* sample images */}
         <View style={styles.sampleContainer}>
@@ -98,7 +97,7 @@ const AnalyseImage: React.FC = () => {
             </View>
           )}
           {
-            !result && !descriptiveResult ?
+            !result ?
               <View style={styles.instructionContainer}>
                 {/* instructions */}
                 <View style={styles.instructionWrapper}>
@@ -117,18 +116,8 @@ const AnalyseImage: React.FC = () => {
                 // display descriptive results here
                 <View style={styles.resultContainer}>
                   <View style={styles.resultWrapper}>
-                    <Text style={[styles.resultAttentionText, { color: getAttentionTextColor() }]}>{descriptiveResult?.description}</Text>
-                    <View style={styles.resultDetails}>
-                      <Text style={styles.resultDetailsHeading}>Details</Text>
-                      <Text style={styles.resultDetailsText}>{descriptiveResult?.details.short_description}</Text>
-                      <Text></Text>
-                      <Text style={styles.resultDetailsText}>{descriptiveResult?.details.stage}</Text>
-                      <Text></Text>
-                      <Text style={styles.resultDetailsHeading}>Precautions</Text>
-                      <Text style={styles.resultDetailsText}>{descriptiveResult?.details.precautions}</Text>
-                      <TouchableOpacity>
-                        <Text style={styles.resultDetailsButtonText}>Learn More</Text>
-                      </TouchableOpacity>
+                    <Text style={[styles.resultAttentionText]}>This Mushroom is {result?.class}</Text>
+                    <View>
                     </View>
                   </View>
                 </View>

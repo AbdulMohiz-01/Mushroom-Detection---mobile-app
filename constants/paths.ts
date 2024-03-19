@@ -24,6 +24,6 @@ export const loaders: { [key: string]: any } = {
 
 export const images: { [key: string]: any } = {
     sample1: require('assets/images/sample1.jpg'),
-    sample2: require('assets/images/sample2.jpg'),
+    sample2: require('assets/images/sample2.jpeg'),
     homeBannerImage: require('assets/icons/home-banner-image.png'),
 };

@@ -1,7 +1,7 @@
 export interface ServerResult {
     class: string;
     confidence: number;
-    predictons: number[];
+    predictons?: number[];
 }
 
 export interface DiabeticRetinopathyResult {

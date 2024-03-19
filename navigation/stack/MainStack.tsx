@@ -45,14 +45,13 @@ const MainStack: React.FC = () => {
           } else if (route.name === 'Home') {
             label = 'Home';
           } else if (route.name === 'AnalyseImage') {
-            label = 'D-Retinopathy';
+            label = 'Analyse Mushroom';
           }
 
           return <Text style={{ color: focused ? '#199a8e' : '#666' }}>{label}</Text>;
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="AnalyseImage" component={AnalyseImage} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>

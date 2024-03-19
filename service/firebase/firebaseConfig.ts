@@ -1,20 +1,17 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
+import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyA87DO6A1vl2V7CYwFj8ACqLB2ZuvVSSrA",
-  authDomain: "retinopathy-97006.firebaseapp.com",
-  projectId: "retinopathy-97006",
-  storageBucket: "retinopathy-97006.appspot.com",
-  messagingSenderId: "578905433992",
-  appId: "1:578905433992:web:4e4071fe294dcf3cc67c3d",
-  measurementId: "G-95N4N2F566"
+  apiKey: "AIzaSyDjjOoP48RRuyEM8oWQiOiuaXj96S3HJPg",
+  authDomain: "mashroom-insights.firebaseapp.com",
+  projectId: "mashroom-insights",
+  storageBucket: "mashroom-insights.appspot.com",
+  messagingSenderId: "780484465389",
+  appId: "1:780484465389:web:293759157374ba0de332e4"
 };
 
 // Initialize Firebase
